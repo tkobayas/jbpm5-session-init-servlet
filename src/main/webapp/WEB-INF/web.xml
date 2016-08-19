@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+	<display-name>SessionInitServlet</display-name>
+
+	<servlet>
+		<servlet-name>SessionInitServlet</servlet-name>
+		<servlet-class>com.redhat.gss.jbpm.rest.SessionInitServlet</servlet-class>
+		<init-param>
+			<param-name>targetUrl</param-name>
+			<param-value>http://localhost:8080/business-central-server/rs/process/definitions</param-value>
+		</init-param>
+		<init-param>
+			<param-name>authUrl</param-name>
+			<param-value>http://localhost:8080/business-central-server/rs/identity/secure/j_security_check</param-value>
+		</init-param>
+		<init-param>
+			<param-name>username</param-name>
+			<param-value>admin</param-value>
+		</init-param>
+		<init-param>
+			<param-name>password</param-name>
+			<param-value>admin</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SessionInitServlet</servlet-name>
+		<url-pattern>/session-init</url-pattern>
+	</servlet-mapping>
+
+</web-app>
