@@ -5,6 +5,7 @@ This is a WAR file which triggers REST access "business-central-server/rs/proces
 - Edit src/main/webapp/WEB-INF/web.xml <init-param> to meet your BRMS URL, username/password
 - mvn clean package
 - Copy target/jbpm5-session-init-servlet-1.0.0.war under $JBOSS_HOME/server/$PROFILE/deploy/deploy.last (create "deploy.last" directory if it doesn't exist)
+- This WAR file just works for BRMS startup. You don't need to access.
 
 When you start BRMS, logs would be like:
 
