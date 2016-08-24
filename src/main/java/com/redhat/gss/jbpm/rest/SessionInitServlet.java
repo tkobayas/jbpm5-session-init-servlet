@@ -13,8 +13,11 @@ import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.log4j.Logger;
 
 public class SessionInitServlet extends HttpServlet {
+
+    private static Logger logger = Logger.getLogger(SessionInitServlet.class);
 
     @Override
     public void init() throws ServletException {
@@ -30,7 +33,7 @@ public class SessionInitServlet extends HttpServlet {
         Thread thread = new Thread(new Runnable() {
 
             public void run() {
-                System.out.println("SessionInitServlet.init()");
+                logger.info("SessionInitServlet.init()");
 
                 HttpClient httpclient = new HttpClient();
 
@@ -38,7 +41,7 @@ public class SessionInitServlet extends HttpServlet {
                 HttpMethod theMethod = new GetMethod(targetUrl);
                 try {
                     int result = httpclient.executeMethod(theMethod);
-                    System.out.println(targetUrl + " : result = " + result);
+                    logger.info(targetUrl + " : result = " + result);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
@@ -52,7 +55,7 @@ public class SessionInitServlet extends HttpServlet {
                 authMethod.setRequestBody(data);
                 try {
                     int result = httpclient.executeMethod(authMethod);
-                    System.out.println(authUrl + " : result = " + result);
+                    logger.info(authUrl + " : result = " + result);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
@@ -63,10 +66,10 @@ public class SessionInitServlet extends HttpServlet {
                 StringBuffer sb = new StringBuffer();
                 try {
                     int result = httpclient.executeMethod(theMethod);
-                    System.out.println(targetUrl + " : result = " + result);
+                    logger.info(targetUrl + " : result = " + result);
                     sb.append(theMethod.getResponseBodyAsString());
                     String rawResult = sb.toString();
-                    System.out.println(rawResult);
+                    logger.info(rawResult);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -83,6 +86,6 @@ public class SessionInitServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("This servelt is just used for load-on-startup");
+        logger.info("This servelt is just used for load-on-startup");
     }
 }
